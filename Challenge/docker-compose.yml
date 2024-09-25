@@ -1,0 +1,12 @@
+services:
+  challenge:
+    image: challenge:latest
+    container_name: challenge
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ../artefakter:/app/artefakter 
+    working_dir: /app
+    command: ["dotnet", "Challenge.dll", "/app/artefakter"]  # Replace 'inputfile' with your actual input file
+ 
