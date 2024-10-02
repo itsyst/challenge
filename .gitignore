@@ -17,3 +17,4 @@
 # NuGet Packages
 *.nupkg
 packages/
+node_modules/
