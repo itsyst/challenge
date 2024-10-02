@@ -1,12 +1,48 @@
 services:
-  challenge:
-    image: challenge:latest
-    container_name: challenge
+  # C# Service
+  csharp-challenge:
+    image: csharp-challenge:latest
+    container_name: csharp-challenge
     build:
       context: .
-      dockerfile: ./Dockerfile
+      dockerfile: ./Dockerfile.csharp
     volumes:
-      - ../artefakter:/app/artefakter 
+      - ../artefakter:/app/artefakter
     working_dir: /app
-    command: ["dotnet", "Challenge.dll", "/app/artefakter"]  # Replace 'inputfile' with your actual input file
- 
+    command: ["dotnet", "Challenge.dll", "/app/artefakter"]
+
+  # Python Service
+  python-challenge:
+    image: python-challenge:latest
+    container_name: python-challenge
+    build:
+      context: .
+      dockerfile: ./Dockerfile.python
+    volumes:
+      - ../artefakter:/app/artefakter
+    working_dir: /app
+    command: ["python3", "challenge.py", "/app/artefakter"]
+
+  # JavaScript Service
+  javascript-challenge:
+    image: javascript-challenge:latest
+    container_name: javascript-challenge
+    build:
+      context: .
+      dockerfile: ./Dockerfile.javascript
+    volumes:
+      - ../artefakter:/app/artefakter
+    working_dir: /app
+    command: ["node", "challenge.js", "/app/artefakter"]
+
+
+
+# Run using docker-compose by specifying the service name:
+# # Run the C# version
+# docker-compose up csharp-challenge
+
+# # Run the Python version
+# docker-compose up python-challenge
+
+# # Run the JavaScript version
+# docker-compose up javascript-challenge
